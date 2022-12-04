@@ -35,10 +35,10 @@ public class UserSecurityController {
     UserDto userDto = userSecurityService.addUserSecurity(userSecurity);
     if (userDto.getCode().equals("200")) {
       model.addAttribute("response", "Welcome ".concat(userSecurity.getName()));
-      return "redirect:/modseg";
+      return "redirect:/login";
     }
     model.addAttribute("response", userDto.getMessage());
-    return "ValidacionResponse";
+    return "ValidationResponseAuth";
   }
 
   @PostMapping("/login")
@@ -47,10 +47,10 @@ public class UserSecurityController {
 
     if (user == null) {
       model.addAttribute("response", "Invalid Credentials");
+      return "ValidationResponseAuth";
     } else {
-      model.addAttribute("response", "Welcome ".concat(user.getName()));
+      return "redirect:/user";
     }
-    return "redirect:/user";
   }
 
   @PostMapping("/recover")
@@ -59,13 +59,12 @@ public class UserSecurityController {
 
     if (user == null) {
       model.addAttribute("response", "Invalid Credentials");
+      return "ValidationResponseAuth";
     } else {
       UserSecurity savedUser = userSecurityService.changePassword(user, userSecurity.getPassword());
-      model.addAttribute("response", "Password changed for ".concat(savedUser.getName()));
+      //model.addAttribute("response", "Password changed for ".concat(savedUser.getName()));
+      return "redirect:/login";
     }
-
-    return "index";
-
   }
 
 }
