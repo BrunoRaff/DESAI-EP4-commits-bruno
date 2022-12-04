@@ -12,7 +12,7 @@ public class UserDto {
   private Object data;
 
   public static UserDto whenUserEmailAlreadyExists() {
-    return UserDto.builder().code("500").message("Correo ya existe").build();
+    return UserDto.builder().code("510").message("Correo ya existe").build();
   }
 
   public static UserDto whenError(String message) {
@@ -25,4 +25,5 @@ public class UserDto {
             .message("User registered successfully")
             .build();
   }
+
 }
