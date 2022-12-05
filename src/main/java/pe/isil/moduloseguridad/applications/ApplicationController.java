@@ -20,7 +20,7 @@ public class ApplicationController {
   UserSecurityService userSecurityService;
   @GetMapping("/")
   public String index(Model model) {
-    model.addAttribute("listApps",applicationService.findAll());
+    model.addAttribute("ListApps",applicationService.findAll());
     return "application/index";
   }
 
