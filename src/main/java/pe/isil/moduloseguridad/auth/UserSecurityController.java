@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.isil.moduloseguridad.user.UserDto;
 
 @Controller
@@ -42,14 +43,14 @@ public class UserSecurityController {
   }
 
   @PostMapping("/login")
-  public String login(@ModelAttribute(name="authuser") UserSecurity userSecurity, Model model) {
+  public String login(@ModelAttribute(name="authuser") UserSecurity userSecurity, Model model, RedirectAttributes redirectAttributes) {
     UserSecurity user = userSecurityService.findUserSecurity(userSecurity.getEmail(), userSecurity.getPassword());
 
     if (user == null) {
       model.addAttribute("response", "Invalid Credentials");
       return "ValidationResponseAuth";
     } else {
-      return "redirect:/user";
+      return "redirect:/modseg/menu";
     }
   }
 

@@ -20,10 +20,6 @@ public class Application {
   private String baseDatos;
   private String language;
   private String usuarioCreacion;
-  private Date fechaCreacion;
+  private Date fechaCreacion = new Date();
 
-  @PostPersist
-  public void postPersistFecha() {
-    this.fechaCreacion = new Date();
-  }
 }

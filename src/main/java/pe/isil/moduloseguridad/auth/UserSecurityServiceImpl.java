@@ -2,7 +2,6 @@ package pe.isil.moduloseguridad.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.isil.moduloseguridad.user.User;
 import pe.isil.moduloseguridad.user.UserDto;
 
 import java.util.Optional;
@@ -49,6 +48,15 @@ public class UserSecurityServiceImpl implements UserSecurityService {
       userSecurity.setPassword(newPassword);
       userSecurityRepository.save(userSecurity);
       return userSecurity;
+    } else {
+      return null;
+    }
+  }
+
+  public UserSecurity findById(Long id) {
+    Optional<UserSecurity> userToFind = userSecurityRepository.findById(id);
+    if (userToFind.isPresent()) {
+      return userToFind.get();
     } else {
       return null;
     }

@@ -9,6 +9,7 @@ public interface UserSecurityService {
   UserSecurity findUserByEmail(String email);
   UserDto addUserSecurity(UserSecurity user);
 
+  UserSecurity findById(Long id);
   UserSecurity changePassword(UserSecurity user, String newPassword);
 
 }
