@@ -25,4 +25,10 @@ public class ApplicationServiceImpl implements ApplicationService {
       return ApplicationDto.whenApplicationsExists();
     }
   }
+
+  @Override
+  public List<Application> findAll() {
+    return applicationRepository.findAll();
+  }
+
 }

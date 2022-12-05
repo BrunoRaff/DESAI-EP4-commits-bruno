@@ -18,8 +18,9 @@ public class ApplicationController {
   ApplicationService applicationService;
   @Autowired
   UserSecurityService userSecurityService;
-  @GetMapping()
-  public String index() {
+  @GetMapping("/")
+  public String index(Model model) {
+    model.addAttribute("listApps",applicationService.findAll());
     return "application/index";
   }
 

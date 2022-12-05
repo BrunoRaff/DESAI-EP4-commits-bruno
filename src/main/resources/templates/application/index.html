@@ -7,6 +7,52 @@
 </head>
 <body>
 <div class="container">
+
+
+  <br>
+  <div class="container">
+    <table class="table">
+      <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Base de Datos</th>
+        <th>lenguaje</th>
+        <th>Fecha de Creación</th>
+        <th>usuario Creación</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${listUsers}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.baseDatos}"></td>
+        <td th:text="${user.language}"></td>
+        <td th:text="${user.usuarioCreacion}"></td>
+        <td th:text="${user.fechaCreacion}"></td>
+        <td>
+
+          <div class="row">
+            <div class="col-3">
+              <a th:href="@{/user/update(id=${user.id})}" class="btn btn-primary">Editar</a>
+            </div>
+            <div class="col-3">
+              <form th:action="@{/user/delete(id=${user.id})}" th:method="delete">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <br>
+
   <a th:href="@{/modseg/menu}" class="d-block nav-item py-3">Volver a menu principal</a>
   <a th:href="@{/application/create}" class="btn btn-primary">Create</a>
 </div>
