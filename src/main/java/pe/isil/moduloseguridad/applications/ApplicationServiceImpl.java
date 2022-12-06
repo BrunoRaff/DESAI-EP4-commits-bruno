@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pe.isil.moduloseguridad.applications.dto.ApplicationDto;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -25,4 +26,16 @@ public class ApplicationServiceImpl implements ApplicationService {
       return ApplicationDto.whenApplicationsExists();
     }
   }
+
+  @Override
+  public void deleteApplication(Long id) {
+
+    Optional<Application> appToDelete = applicationRepository.findById(id);
+
+    if (appToDelete.isPresent()){
+      applicationRepository.delete(appToDelete.get());
+    }
+
+  }
+
 }
