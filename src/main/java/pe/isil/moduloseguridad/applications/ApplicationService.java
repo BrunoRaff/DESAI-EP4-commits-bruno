@@ -8,6 +8,10 @@ public interface ApplicationService {
   List<Application> getApplications();
   ApplicationDto addApplication(Application application);
 
+  ApplicationDto updateApplication(Application application, Long id);
+
+  Application findApplicationById(Long id);
+
   List<Application> findAll();
 
   void deleteApplication(Long id);

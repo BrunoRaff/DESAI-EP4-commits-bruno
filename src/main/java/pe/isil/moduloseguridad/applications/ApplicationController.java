@@ -43,13 +43,31 @@ public class ApplicationController {
       model.addAttribute("response", applicationDto.getMessage());
       return "application/create";
     }
-    return "application/index";
+    return "redirect:/application";
   }
 
   @DeleteMapping("/delete")
   public String deleteUser(@RequestParam("id") Long id) {
     applicationService.deleteApplication(id);
-    return "redirect:/application/index";
+    return "redirect:/application";
+  }
+
+  @GetMapping("/update")
+  public String update(@RequestParam("id") Long id, Model model){
+    model.addAttribute("appToUpdate", applicationService.findApplicationById(id));
+    return "application/update";
+  }
+
+  @PostMapping("/update")
+  public String updateApplication(Application application, Model model){
+    ApplicationDto applicationDto = applicationService.updateApplication(application, application.getId());
+
+    if(applicationDto.getStatus() == 200){
+      return "redirect:/application";
+    }else{
+      model.addAttribute("response", applicationDto.getMessage());
+      return "ValidationResponse";
+    }
   }
 
 }

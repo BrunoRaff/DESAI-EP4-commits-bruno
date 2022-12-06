@@ -28,6 +28,30 @@ public class ApplicationServiceImpl implements ApplicationService {
   }
 
   @Override
+  public ApplicationDto updateApplication(Application application, Long id){
+    try{
+      Optional<Application> appToUpdate = applicationRepository.findById(id);
+      if(appToUpdate.isPresent()){
+        appToUpdate.get().setNombre(application.getNombre() != null ? application.getNombre() : appToUpdate.get().getNombre());
+        appToUpdate.get().setBaseDatos(application.getBaseDatos() != null ? application.getBaseDatos() : appToUpdate.get().getBaseDatos());
+        appToUpdate.get().setLenguage(application.getLenguage() != null ? application.getLenguage() : appToUpdate.get().getLenguage());
+        appToUpdate.get().setUsuarioCreacion(application.getUsuarioCreacion() != null ? application.getUsuarioCreacion() : appToUpdate.get().getUsuarioCreacion());
+        applicationRepository.save(appToUpdate.get());
+        return ApplicationDto.onSuccess();
+      }
+      return ApplicationDto.whenApplicationsExists();
+    } catch (Exception e){
+      return ApplicationDto.whenApplicationsExists();
+    }
+  }
+
+  @Override
+  public Application findApplicationById(Long id) {
+    return applicationRepository.findById(id).orElse(null);
+  }
+
+
+  @Override
   public List<Application> findAll() {
     return applicationRepository.findAll();
   }

@@ -3,6 +3,7 @@ package pe.isil.moduloseguridad.applications;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.net.InetAddress;
 import java.util.Date;
 
 @Entity
