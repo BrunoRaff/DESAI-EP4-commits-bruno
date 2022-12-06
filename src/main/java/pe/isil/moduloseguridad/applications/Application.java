@@ -12,14 +12,19 @@ import java.util.Date;
 @Data
 public class Application {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "nombre", length = 200)
   private String nombre;
   private String baseDatos;
-  private String language;
+  private String lenguage;
   private String usuarioCreacion;
   private Date fechaCreacion = new Date();
+
+  @PostPersist
+  public void updateCreatedAt() {
+    fechaCreacion = new Date();
+  }
 
 }

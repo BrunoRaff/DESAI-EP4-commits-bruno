@@ -1,62 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <title>Applications</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Applications</title>
 </head>
 <body>
+
 <div class="container">
-
-
-  <br>
-  <div class="container">
-    <table class="table">
-      <thead class="table-dark">
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Base de Datos</th>
-        <th>lenguaje</th>
-        <th>Fecha de Creación</th>
-        <th>usuario Creación</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="user : ${ListApps}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.baseDatos}"></td>
-        <td th:text="${user.language}"></td>
-        <td th:text="${user.usuarioCreacion}"></td>
-        <td th:text="${user.fechaCreacion}"></td>
-        <td>
-
-          <div class="row">
-            <div class="col-3">
-              <a th:href="@{/user/update(id=${user.id})}" class="btn btn-primary">Editar</a>
-            </div>
-            <div class="col-3">
-              <form th:action="@{/user/delete(id=${user.id})}" th:method="delete">
-                <button type="submit" class="btn btn-danger">Eliminar</button>
-              </form>
-            </div>
-          </div>
-
-
-
-
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <h1 th:text="${response}"></h1>
 
     <br>
+    <div class="container">
+        <table class="table">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Base de Datos</th>
+                <th>lenguaje</th>
+                <th>usuario Creación</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
 
-  <a th:href="@{/modseg/menu}" class="d-block nav-item py-3">Volver a menu principal</a>
-  <a th:href="@{/application/create}" class="btn btn-primary">Create</a>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+          <tbody>
+          <tr th:each="app : ${listApps}">
+              <td th:text="${app.id}"></td>
+              <td th:text="${app.nombre}"></td>
+              <td th:text="${app.baseDatos}"></td>
+              <td th:text="${app.lenguage}"></td>
+              <td th:text="${app.usuarioCreacion}"></td>
+              <td th:text="${app.fechaCreacion}"></td>
+
+              <td>
+                  <div class="row">
+                      <div class="col-3">
+                          <a th:href="@{/application/update(id=${app.id})}" class="btn btn-primary">Editar</a>
+                      </div>
+                      <div class="col-3">
+                          <form th:action="@{/application/delete(id=${app.id})}" th:method="delete">
+                              <button type="submit" class="btn btn-danger">Eliminar</button>
+                          </form>
+                      </div>
+                  </div>
+
+              </td>
+          </tr>
+
+          </tbody>
+
+        </table>
+
+        <br>
+
+        <a th:href="@{/modseg/menu}" class="d-block nav-item py-3">Volver a menu principal</a>
+        <a th:href="@{/application/create}" class="btn btn-primary">Create</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+            integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+            crossorigin="anonymous"></script>
+
 </body>
 </html>

@@ -9,4 +9,6 @@ public interface ApplicationService {
   ApplicationDto addApplication(Application application);
 
   List<Application> findAll();
+
+
 }

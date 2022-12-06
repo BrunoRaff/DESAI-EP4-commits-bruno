@@ -18,12 +18,19 @@ public class ApplicationController {
   ApplicationService applicationService;
   @Autowired
   UserSecurityService userSecurityService;
-  @GetMapping("/")
+
+  @GetMapping("")
   public String index(Model model) {
-    model.addAttribute("ListApps",applicationService.findAll());
+    model.addAttribute("listApps",applicationService.findAll());
     return "application/index";
   }
-
+/*
+  @GetMapping("")
+  public String index() {
+    //model.addAttribute("listApps",applicationService.findAll());
+    return "application/index";
+  }
+*/
   @GetMapping("/create")
   public String create(Model model) {
     model.addAttribute("response", "");

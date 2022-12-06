@@ -31,4 +31,5 @@ public class ApplicationServiceImpl implements ApplicationService {
     return applicationRepository.findAll();
   }
 
+
 }
