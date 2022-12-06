@@ -45,4 +45,11 @@ public class ApplicationController {
     }
     return "application/index";
   }
+
+  @DeleteMapping("/delete")
+  public String deleteUser(@RequestParam("id") Long id) {
+    applicationService.deleteApplication(id);
+    return "redirect:/application/index";
+  }
+
 }

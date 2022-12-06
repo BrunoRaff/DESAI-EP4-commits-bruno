@@ -10,5 +10,5 @@ public interface ApplicationService {
 
   List<Application> findAll();
 
-
+  void deleteApplication(Long id);
 }
